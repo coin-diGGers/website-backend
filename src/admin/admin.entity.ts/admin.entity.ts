@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Hint } from './hint.entity';
 // import { chromeExtension } from './chromeExtension.entity';
 
 @Entity()

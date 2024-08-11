@@ -1,5 +1,5 @@
+import { Admin } from 'src/admin/admin.entity.ts/admin.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
-import { Admin } from './admin.entity';
 
 @Entity()
 export class Hint {
