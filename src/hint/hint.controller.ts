@@ -1,21 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/admin/authguard/authguard';
 import { HintService } from './hint.service';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { HintDto } from './hintDto/hint.dto';
 
-@ApiTags('BOARD')
 @Controller('')
 export class HintController {
     constructor(private readonly hintService: HintService) {}
 
-    @Get('/main')
-    @ApiOperation({
-      summary: 'agencyURL',
-      description: '버튼이 숨겨진 위치에 대한 힌트 URL',
-    })
-    @ApiResponse({ status: 200, description: '버튼이 숨겨진 위치에 대한 힌트 URL' })
+    @Get('')
     async agencyURLInfo(): Promise<any> {
       const getagencyInfo = await this.hintService.agencyURLInfo();
-    //   const getBoardCount = await this.boardService.board1PageCount();
+
       return { agencyData: getagencyInfo };
+    }
+
+    @UseGuards(AuthGuard)
+    @Post('/diggers/rhksflwkaksemdfhrgkftndlTsmsvpdlwl')
+    async agencyURLPost(@Body() hintDto: HintDto): Promise<any> {
+      const postHint = await this.hintService.postHint(hintDto);
+
+      return { msg: '등록완료'}
     }
 }
