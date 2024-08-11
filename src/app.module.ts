@@ -19,9 +19,10 @@ import { AdminModule } from './admin/admin.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useClass: TypeOrmConfigService,
-    }), AdminModule,
+    }), 
+    AdminModule,
   ],
-  controllers: [AppController, AdminController],
-  providers: [AppService, AdminService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
