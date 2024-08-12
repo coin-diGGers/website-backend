@@ -1,5 +1,6 @@
 import { Admin } from 'src/admin/entities/admin.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Hint } from './hint.entity';
 
 @Entity()
 export class Treasure {
@@ -7,7 +8,7 @@ export class Treasure {
   founder_id: number;
 
   @Column()
-  agency_unique_number: number;
+  agency_id: number;
 
   @Column()
   agency_name: string;

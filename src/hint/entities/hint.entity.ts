@@ -1,13 +1,11 @@
 import { Admin } from 'src/admin/entities/admin.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Treasure } from './treasure.entity';
 
 @Entity()
 export class Hint {
   @PrimaryGeneratedColumn()
   agency_id: number;
-
-  @Column()
-  agency_unique_number: number;
 
   @Column()
   agency_name: string;
