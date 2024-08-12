@@ -2,7 +2,7 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { Admin } from './adminentity/admin.entity';
+import { Admin } from './entities/admin.entity';
 
 @Injectable()
 export class AdminService {

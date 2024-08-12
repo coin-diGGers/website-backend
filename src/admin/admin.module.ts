@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
 import { JwtModule } from '@nestjs/jwt';  // JWT 모듈 추가
-import { Admin } from './adminentity/admin.entity';
+import { Admin } from './entities/admin.entity';
 import { AuthGuard } from './authguard/authguard';
 
 @Module({

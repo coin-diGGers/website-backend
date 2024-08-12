@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Hint } from './entities/hint.entity';
 import { AuthGuard } from 'src/admin/authguard/authguard';
 import { JwtModule } from '@nestjs/jwt';
+import { Treasure } from './entities/treasure.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Hint]),
+    TypeOrmModule.forFeature([Hint, Treasure]),
     JwtModule.register({
       secret: 'your-secret-key', // 실제 비밀 키로 교체하세요
       signOptions: { expiresIn: '60m' }, // 필요에 따라 설정
