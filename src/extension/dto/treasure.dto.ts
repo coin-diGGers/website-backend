@@ -12,4 +12,7 @@ export class TreasureDto {
 
   @IsString()
   coin_address: string;
+
+  @IsNumber()
+  agency_unique_number: number;
 }

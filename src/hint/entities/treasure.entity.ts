@@ -8,9 +8,6 @@ export class Treasure {
   founder_id: number;
 
   @Column()
-  agency_id: number;
-
-  @Column()
   agency_name: string;
 
   @Column()
@@ -23,6 +20,9 @@ export class Treasure {
   coin_address: string;
 
   @Column()
+  agency_unique_number: number;
+
+  @Column()
   found: boolean;
 
   @Column()
@@ -30,7 +30,4 @@ export class Treasure {
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
-
-  @ManyToOne(() => Admin, (Admin) => Admin.admin_id)
-  Admin: Admin;
 }

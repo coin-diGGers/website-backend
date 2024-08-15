@@ -36,13 +36,14 @@ export class HintService {
 
     async postHint(hintDto: HintDto): Promise<any> {
       try {
-        const { agency_name, coin_name, coin_ammount, url } = hintDto;
+        const { agency_name, coin_name, coin_ammount, url, agency_unique_number } = hintDto;
           
         const createHint = this.hintRepository.create({
           agency_name, 
           coin_name, 
           coin_ammount, 
-          url
+          url,
+          agency_unique_number
         })
 
         return await this.hintRepository.save(createHint);
@@ -63,7 +64,9 @@ export class HintService {
 
   async foundersAddress(): Promise<any> {
     try {
-      const walletAddress = await this.treasureRepository.find();
+      const walletAddress = await this.treasureRepository.find({
+        order: {founder_id:'DESC'}
+      });
       return walletAddress
 
 

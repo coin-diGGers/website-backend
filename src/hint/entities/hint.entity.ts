@@ -19,6 +19,9 @@ export class Hint {
   @Column()
   coin_ammount: number;
 
+  @Column()
+  agency_unique_number: number;
+
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 

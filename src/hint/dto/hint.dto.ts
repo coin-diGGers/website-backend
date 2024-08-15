@@ -12,4 +12,7 @@ export class HintDto {
 
   @IsString()
   url: string;
+
+  @IsNumber()
+  agency_unique_number: number;
 }
