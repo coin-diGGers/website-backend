@@ -16,7 +16,9 @@ export class HintService {
 
     async agencyURLInfo(): Promise<any> {
         try {
-            const agencyURL = await this.hintRepository.find()
+            const agencyURL = await this.hintRepository.find({
+              order: {agency_id:'DESC'}
+            })
             return agencyURL
         } catch (error) {
             throw new HttpException(
