@@ -9,6 +9,9 @@ import { TypeOrmConfigService } from './config/database.config';
 import { AdminController } from './admin/admin.controller';
 import { AdminService } from './admin/admin.service';
 import { AdminModule } from './admin/admin.module';
+import { ExtensionController } from './extension/extension.controller';
+import { ExtensionService } from './extension/extension.service';
+import { ExtensionModule } from './extension/extension.module';
 
 @Module({
   imports: [
@@ -20,7 +23,7 @@ import { AdminModule } from './admin/admin.module';
       imports: [ConfigModule],
       useClass: TypeOrmConfigService,
     }), 
-    AdminModule,
+    AdminModule, ExtensionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

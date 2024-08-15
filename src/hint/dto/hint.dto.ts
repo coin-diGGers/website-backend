@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class HintDto {
   @IsString()
@@ -7,7 +7,7 @@ export class HintDto {
   @IsString()
   coin_name: string;
 
-  @IsString()
+  @IsNumber()
   coin_ammount: number;
 
   @IsString()
