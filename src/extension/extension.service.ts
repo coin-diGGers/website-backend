@@ -13,19 +13,25 @@ export class ExtensionService {
       private treasureRepository: Repository<Treasure>
     ) {}
 
-    // 로직 추가
-    // 만약 등록한 힌트의 agency_id와 찾은 보물 treasure 테이블의 agency_id가 동일할 때 hint 테이블에 등록된 agency_id의 데이터 지우기
     async treasureSubmit(treasureDto): Promise<any> {
         try {
             const { agency_name, coin_name, coin_ammount, coin_address, agency_unique_number } = treasureDto;
+
+            // Treasure가 이미 등록된 경우 예외 처리
+            const existingTreasure = await this.treasureRepository.findOne({ where: { agency_unique_number } });
+            if (existingTreasure) {
+                throw new HttpException('This treasure has already been claimed', 400);
+            }
 
             const submittedTreasure = this.treasureRepository.create({
                 agency_name, 
                 coin_name, 
                 coin_ammount, 
                 coin_address,
-                agency_unique_number
-            })
+                agency_unique_number,
+                found: true, // Treasure를 찾은 것으로 표시
+                withdraw_status: false,
+            });
 
             const savedTreasure = await this.treasureRepository.save(submittedTreasure);
 
@@ -34,17 +40,24 @@ export class ExtensionService {
 
             return savedTreasure;
 
-        }catch (error) {
-          throw new HttpException(
-            {
-              status: 400,
-              error: {
-                message: '보물 등록 에러',
-                detail: error.message,
-              },
-            },
-            400,
-          );
+        } catch (error) {
+            throw new HttpException(
+                {
+                    status: 400,
+                    error: {
+                        message: '보물 등록 에러',
+                        detail: error.message,
+                    },
+                },
+                400,
+            );
         }
+    }
+
+    // Treasure 상태 확인
+    async checkTreasureStatus(agency_unique_number: number): Promise<any> {
+        // const uniqueNumberTrueOrFalse = await this.treasureRepository.find({where: { agency_unique_number }})
+        const treasure = await this.treasureRepository.findOne({ where: { found: true, agency_unique_number } });
+        return !!treasure;
     }
 }

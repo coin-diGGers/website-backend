@@ -10,6 +10,7 @@ import { Hint } from 'src/hint/entities/hint.entity';
     TypeOrmModule.forFeature([Treasure, Hint]),
     ],
     controllers: [ExtensionController],
-    providers: [ExtensionService]
+    providers: [ExtensionService],
+    exports: [ExtensionService], 
 })
 export class ExtensionModule {}
