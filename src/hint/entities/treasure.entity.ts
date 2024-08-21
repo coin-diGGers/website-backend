@@ -13,8 +13,13 @@ export class Treasure {
   @Column()
   coin_name: string;
 
-  @Column()
+  @Column('decimal', { precision: 10, scale: 6, 
+    transformer: {
+    to: (value: number) => value,  // 저장할 때 그대로 저장
+    from: (value: string) => parseFloat(value) // 가져올 때 parseFloat로 변환하여 3.00 -> 3
+  }})
   coin_ammount: number;
+
 
   @Column()
   coin_address: string;
